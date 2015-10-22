@@ -1,0 +1,25 @@
+import java.awt.Color; 
+import gui.GUISimulator; 
+import gui.Rectangle ;
+
+public class TestBallsSimulator1 {
+    public static void main(String[] args) {
+	GUISimulator gui = new GUISimulator(500, 500, Color.BLACK);
+
+	BallsSimulator sim = new BallsSimulator()
+
+	    gui.setSimulable(sim);
+
+	for (int i = 0; i < sim.b.getDim() - 1; i++) {
+	    window.addGraphicalElement(
+				       new Rectangle(sim.b.getBalle(i).getX,
+						     sim.b.getBalle(i).getY,
+						     Color.decode("#1f77b4"),
+						     Color.decode("#1f77b4"),
+						     10
+						     )
+				       )
+		}
+
+    }
+}
