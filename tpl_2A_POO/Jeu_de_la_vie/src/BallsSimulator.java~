@@ -1,0 +1,33 @@
+import gui.Simulable;
+
+public class BallsSimulator implements Simulable {
+
+    private Balls b; 
+
+    public BallsSimulator() {
+	this.b = new Balls(1);
+    }
+
+    @Override
+    public String toString() {
+	String S = new String("[");
+	for (int i = 0; i < this.b.getDim() - 1; i++) {
+	    S += this.b.getBalle(i).toString() + ", ";
+	}
+	S += this.b.getBalle(this.b.getDim()).toString() + "]";
+
+	return S;
+    } 
+
+    @Override
+    public void next() {
+	this.b.translate(5,5);
+	System.out.println(this.toString());
+    }
+    
+    @Override
+    public void restart() {
+	this.b.reInit();
+	System.out.println(this.toString());
+    }
+}
