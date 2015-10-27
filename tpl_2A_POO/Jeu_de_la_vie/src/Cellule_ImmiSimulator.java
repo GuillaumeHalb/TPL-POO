@@ -41,6 +41,13 @@ public class Cellule_ImmiSimulator extends CelluleSimulator implements Simulable
 	 this.cells_immi.evolution();
 	 this.Affiche();
      }
+
+        @Override
+    public void restart() {
+    	this.cells_immi.reInit();
+    	//System.out.println(this.toString());
+    	this.Affiche();
+    }
     // @Override
     // public String toString() {
     // 	String S = new String("[");
