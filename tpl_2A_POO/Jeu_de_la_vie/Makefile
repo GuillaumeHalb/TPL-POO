@@ -21,26 +21,13 @@
 #   -classpath : repertoire dans lequel sont cherches les .class deja compiles
 #   -sourcepath : repertoire dans lequel sont cherches les .java (dependances)
 
-all: exeCellsSimu
+all: Jeudelavie
 
-testGUI:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGUI.java
-
-BallsSimu:	
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBallsSimulator.java
-
-CellsSimu:	
+CellsVieSimu:	
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestCellsSimulator.java
 
-BallsSimu1:	
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBallsSimulator1.java
-
-Balls:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/Balls.java
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBalls.java
-
-testGUI1:
-	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGUI1.java
+CellsImmiSimu:	
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestCells_ImmiSimulator.java
 
 
 # Execution:
@@ -48,23 +35,13 @@ testGUI1:
 #   > java -classpath bin TestGUI
 # ou bien lancer l'execution en passant par ce Makefile:
 #   > make exeIHM
-exeGUI: testGUI
-	java -classpath bin:bin/gui.jar TestGUI
 
-exeBallsSimu: BallsSimu
-	java -classpath bin:bin/gui.jar TestBallsSimulator
 
-exeCellsSimu: CellsSimu
+Jeudelavie: CellsVieSimu
 	java -classpath bin:bin/gui.jar TestCellsSimulator
 
-exeBallsSimu1: BallsSimu1 
-	java -classpath bin:bin/gui.jar TestBallsSimulator1
-
-exeBalls: Balls
-	java -classpath bin:bin/gui.jar TestBalls
-
-exeGUI1: testGUI1
-	java -classpath bin:bin/gui.jar TestGUI1
+Jeudelimmi: CellsImmiSimu
+	java -classpath bin:bin/gui.jar TestCells_ImmiSimulator
 
 clean:
 	rm -rf bin/*.class

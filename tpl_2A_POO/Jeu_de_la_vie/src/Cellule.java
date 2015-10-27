@@ -6,7 +6,7 @@ public class Cellule {
     private boolean[][] etatap; //True si vivant, false sinon
     
     // création d'un tableau où chaque case est une cellule
-    public Cellule (int lignes, int colonnes) {
+    public Cellule (int lignes, int colonnes,int n) {
 	this.cellules = new Point[colonnes][lignes];
 	this.etatav = new boolean[colonnes][lignes];
 	this.etatap = new boolean[colonnes][lignes];

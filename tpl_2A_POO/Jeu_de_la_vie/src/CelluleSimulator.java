@@ -10,10 +10,10 @@ public class CelluleSimulator implements Simulable {
     private Cellule cells; 
     private GUISimulator gui;
 
-    public CelluleSimulator(int taillex, int tailley) {
+    public CelluleSimulator(int taillex, int tailley, int n) {
 	this.gui = new GUISimulator(10*taillex, 10*tailley, Color.WHITE);
 	this.gui.setSimulable(this);
-	this.cells = new Cellule(taillex,tailley);
+	this.cells = new Cellule(taillex,tailley,2);
 	this.taillex = taillex;
 	this.tailley = tailley;
     }
@@ -37,8 +37,8 @@ public class CelluleSimulator implements Simulable {
 	
 	this.gui.reset();
 	
-	for (int i = 0; i < this.taillex; i++) {
-	    for (int j = 0; j < this.tailley; j++) {
+	for (int i = 1; i < this.taillex-1; i++) {
+	    for (int j = 1; j < this.tailley-1; j++) {
 		if (this.cells.getEtatav(i,j)) {
 		    this.gui.addGraphicalElement(
 						 new Rectangle(10*i,10*j,
