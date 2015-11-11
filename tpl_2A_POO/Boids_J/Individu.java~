@@ -1,0 +1,3 @@
+public class Individu {
+    private Integer essaim; // A quel essaim appartient l'individu
+}

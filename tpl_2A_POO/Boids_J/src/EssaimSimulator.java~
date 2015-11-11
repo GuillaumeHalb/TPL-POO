@@ -1,0 +1,58 @@
+import gui.Simulable;
+import gui.GUISimulator;
+import gui.Rectangle;
+import java.awt.Color;
+
+public class EssaimSimulator  implements Simulable {
+
+    private int taillex;
+    private int tailley;
+    private GUISimulator gui;
+    private Essaim essaim;
+    
+    public EssaimSimulator(int taillex, int tailley,double d, Integer v_max) {
+	this.gui = new GUISimulator(10*taillex, 10*tailley, Color.WHITE);
+	this.taillex = taillex;
+    	this.tailley = tailley;
+	this.essaim = new Essaim(d,v_max);
+    }
+
+    public Essaim getEssaim() {
+	return this.essaim;
+    }
+
+      public int gettaillex() {
+	   return this.taillex;
+    }
+    public int gettailley() {
+	   return this.tailley;
+    }
+
+    public GUISimulator getGUI() {
+	   return this.gui;
+    }
+
+    
+    public void Affiche() {
+	this.getGUI().reset();
+	for (Individu i : this.essaim.getAgents()) {
+	    Color coul = Color.BLACK;
+	    Pt pos = i.getPosition();
+	    this.gui.addGraphicalElement(new Rectangle(pos.getX(),pos.getY(),Color.BLUE,Color.BLUE,5,5));
+	}
+    }
+
+    @Override
+    public void next() {
+	for (Individu i : this.essaim.getAgents()) {
+	 	i.evolution(this.essaim);
+	}
+	 	this.Affiche();
+     }
+
+        @Override
+    public void restart() {
+    	this.essaim.reInit();
+    	this.Affiche();
+    }
+}
