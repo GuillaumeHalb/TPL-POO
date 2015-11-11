@@ -21,7 +21,7 @@ public class Pt extends Double {
     }
 
     public Pt sous(Pt a, Pt b) {
-	Pt p= new Pt(0.0,0.0);;
+	Pt p= new Pt(0.0,0.0);
 	p.x = a.x - b.x;
 	p.y = a.y - b.y;
 	return p;

@@ -1,4 +1,3 @@
-    
 public class Individu {
     private Integer essaim; // A quel essaim appartient l'individu
     private Pt position;
@@ -16,6 +15,23 @@ public class Individu {
 	return a.essaim == b.essaim 
 	    && a.position == b.position 
 	    && a.direction == b.direction;
+    }
+
+    public Boolean estVu(Individu i1, double d) { /* Renvoit si i2 voit i1*/
+	Pt p = new Pt(0.0,0.0);
+	if (p.distance(i1.getPosition(), this.getPosition()) <= 10.0*d) { // On vérifie la distance
+	    Pt u = new Pt(0.0,0.0);
+	    u = this.getDirection();
+	    Pt v = new Pt(0.0,0.0);
+	    v.sous(this.getPosition(), i1.getPosition());
+	    double angle = Math.acos(u.getX()*v.getX() + u.getY()*v.getY()) 
+		/ u.norme()*v.norme();
+	    if (angle <= Math.PI/2.0 && angle >= 0.0 
+		|| angle <= 2.0*Math.PI && angle >= 3.0*Math.PI/2.0) {// On vérifie si l'individu n'est pas derrière
+		return true;
+	    }
+	}
+	return false;
     }
 
     public Integer getEssaim() {
@@ -36,18 +52,36 @@ public class Individu {
 
     public Pt Cohesion(Essaim e) {
 	Pt p = new Pt(0.0,0.0);
-	Pt Centre = new Pt(100.0,100.0); // Centre dans le champ de vision
-	p = p.sous(Centre, this.position);	
-	return p;
+	Integer compteur = 0;
+	for (Individu i : e.getAgents()) {
+	    if (this.estVu(i, e.getDistance())) {
+		p = p.add(p, i.getPosition());
+		compteur++;
+	    }
+	}
+	if (compteur != 0) {
+	    return p.div(p,compteur);
+	}
+	else {
+	    return p;
+	}
     }
 
     public Pt Alignement(Essaim e) {
-	Pt p= new Pt(0.0,0.0);
+	Pt p = new Pt(0.0,0.0);
+	Integer compteur = 0;
 	for (Individu i : e.getAgents()) {
-	    p = p.add(p, i.direction);
+	    if (this.estVu(i, e.getDistance())) {
+		p = p.add(p, i.direction);
+		compteur++;
+	    }
 	}
-	p =  p.div(p, e.getNbAgents()); 
-       	return p;
+	if (compteur != 0) {
+	    return p.div(p,compteur);
+	}
+	else {
+	    return p;
+	}
     }
 
     public Pt Separation(Essaim e) { // ajouter champ de vision
@@ -71,11 +105,12 @@ public class Individu {
     public void Evolution(Essaim e) {
 	Pt p= new Pt(0.0,0.0);
 	Pt cohesion = Cohesion(e);
-	Pt separation = Separation(e);
 	Pt alignement = Alignement(e);
+	Pt separation = Separation(e);
 	Pt direction =  p.add(p.add(cohesion, separation), alignement);
 	this.direction = direction;
-	System.out.println("Direction: "+ direction.getX() +  ";" + direction.getY());
+	System.out.println("Direction: "+ direction.getX() +  ";" 
+			   + direction.getY());
 	if (direction.norme() > e.getV_max()) {
 	    this.direction =  p.mult(direction,e.getV_max()/direction.norme());
 	}
