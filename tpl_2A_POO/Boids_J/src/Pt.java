@@ -54,4 +54,9 @@ public class Pt extends Double {
 	this.x  = this.x/norme;
 	this.y  = this.y/norme;
     }
+    
+    @Override
+    public String toString() {
+	return "(X = " + this.x + ", Y = " + this.y + ")";
+    }
 }

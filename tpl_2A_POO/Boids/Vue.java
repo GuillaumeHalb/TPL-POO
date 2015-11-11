@@ -7,5 +7,11 @@ public class Vue {
 	this.distance = d;
     }
 
-    // Faire les get
+    public double getAngle() {
+	return this.angle;
+    }
+    
+    public double getDistance() {
+	return this.distance;
+    }
 }

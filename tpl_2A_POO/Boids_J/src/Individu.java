@@ -36,7 +36,7 @@ public class Individu {
 
     public Pt Cohesion(Essaim e) {
 	Pt p = new Pt(0.0,0.0);
-	Pt Centre = new Pt(20.0,20.0); // Centre dans le champ de vision
+	Pt Centre = new Pt(100.0,100.0); // Centre dans le champ de vision
 	p = p.sous(Centre, this.position);	
 	return p;
     }
@@ -60,7 +60,12 @@ public class Individu {
 		p = p.add(p,p.sous(this.position, i.position));
 	    }
 	}
-	return p.div(p,nb_trop_proches);
+	if (nb_trop_proches != 0) {
+	    return p.div(p,nb_trop_proches);
+	}
+	else {
+	    return p;
+	}
     }
     
     public void Evolution(Essaim e) {
@@ -68,12 +73,19 @@ public class Individu {
 	Pt cohesion = Cohesion(e);
 	Pt separation = Separation(e);
 	Pt alignement = Alignement(e);
-	Pt direction =  p.add( p.add(cohesion, separation), alignement);
+	Pt direction =  p.add(p.add(cohesion, separation), alignement);
 	this.direction = direction;
 	System.out.println("Direction: "+ direction.getX() +  ";" + direction.getY());
 	if (direction.norme() > e.getV_max()) {
 	    this.direction =  p.mult(direction,e.getV_max()/direction.norme());
 	}
 	this.position =  p.add(this.position, this.direction);
+    }
+
+    @Override
+    public String toString() {
+	return "L'individu appartient à l'essaim " + this.essaim 
+	    + " et a pour position " + this.position.toString() 
+	    + " et pour direction " + this.direction.toString();
     }
 }
