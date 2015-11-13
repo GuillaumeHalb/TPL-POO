@@ -76,7 +76,7 @@ public class BallsSimulator implements Simulable {
     
     @Override
     public void restart() {
-	this.b.reInit();
+	this.b.reInit(this.taillex, this.tailley);
 	System.out.println(this.toString());
 	this.Affiche();
     }

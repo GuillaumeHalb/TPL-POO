@@ -44,6 +44,14 @@ public class Essaim {
 	return this.agents;
     }
 
+    //  public Vue getVision() {
+    // 	return this.vision;
+    // }
+
+    // public Point getCentre() {
+    // 	return this.centre;
+    // }
+
     public double getDistance() {
 	return this.distance;
     }

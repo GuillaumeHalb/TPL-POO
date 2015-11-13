@@ -64,9 +64,9 @@ public class Balls {
 	} 
     }
 
-    void reInit() {
+    void reInit(Integer l, Integer h) {
 	for (int i = 0; i < this.balles.length; i++) {
-	    this.balles[i] = new Point(20*(i+1), 20*(i+1));
+	    this.balles[i] = new Point((int)(Math.random()*l), (int)(Math.random() * h));
 	}
     }
 
