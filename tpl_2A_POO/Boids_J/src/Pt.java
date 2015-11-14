@@ -35,14 +35,12 @@ public class Pt extends Double {
     }
 
     public Pt mult(Pt a, double d) {
-	Pt p= new Pt(0.0,0.0);;
-	return p = div(a, 1/d);
+	return  div(a, 1/d);
     }
 
     public double distance(Pt a, Pt b) {
-	double d;
-	d = Math.sqrt( (a.y - b.y)*(a.y - b.y) + (a.x - b.x)*(a.x - b.x) );
-	return d;
+	 return Math.sqrt( (a.y - b.y)*(a.y - b.y) + (a.x - b.x)*(a.x - b.x) );
+	
     }
 
     public double norme(){
