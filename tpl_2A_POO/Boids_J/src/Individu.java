@@ -17,23 +17,19 @@ public class Individu {
 	    && a.direction == b.direction;
     }
 
-    public Boolean estVu(Individu i1, double d) { /* Renvoit si i2 voit i1*/
+    public Boolean estVu(Individu i1, double d) { /* Renvoit true si this voit i1*/
 	Pt p = new Pt(0.0,0.0);
-	if (p.distance(i1.getPosition(), this.getPosition()) <= 10.0*d) { // On vérifie la distance
-	    Pt u = new Pt(0.0,0.0);
-	    u = this.getDirection();
-	    Pt v = new Pt(0.0,0.0);
-	    v.sous(this.getPosition(), i1.getPosition());
-	    double angle = Math.acos(u.getX()*v.getX() + u.getY()*v.getY()) 
-		/ u.norme()*v.norme();
-	    if (angle <= Math.PI/2.0 && angle >= 0.0 
-		|| angle <= 2.0*Math.PI && angle >= 3.0*Math.PI/2.0) {// On vérifie si l'individu n'est pas derrière
-		return true;
+	if (!estEgal(this,i1) ) {
+	    if (p.distance(i1.getPosition(), this.getPosition()) <= 1.0*d) { // On vérifie la distance
+		Pt u = this.getDirection();
+		Pt v = u.sous(i1.getPosition(), this.getPosition());
+		double angle = Math.acos(u.getX()*v.getX() + u.getY()*v.getY()) / (u.norme()*v.norme());
+		return (!((angle <= Math.PI/2.0 && angle >= 0.0 ) || (angle <= 2.0*Math.PI && angle >= 3.0*Math.PI/2.0))); // On vérifie si l'individu n'est pas derrière
+		}
 	    }
-	}
-	return false;
+	    return false;
     }
-
+    
     public Integer getEssaim() {
 	return this.essaim;
     }
@@ -54,13 +50,14 @@ public class Individu {
 	Pt p = new Pt(0.0,0.0);
 	Integer compteur = 0;
 	for (Individu i : e.getAgents()) {
-	    if (this.estVu(i, e.getDistance())) {
+	    if (this.estVu(i, 5.0*e.getDistance())) {
+		
 		p = p.add(p, i.getPosition());
 		compteur++;
 	    }
 	}
 	if (compteur != 0) {
-	    return p.div(p,compteur);
+	    return p.sous(p.div(p,compteur),this.position);
 	}
 	else {
 	    return p;
@@ -71,7 +68,7 @@ public class Individu {
 	Pt p = new Pt(0.0,0.0);
 	Integer compteur = 0;
 	for (Individu i : e.getAgents()) {
-	    if (this.estVu(i, e.getDistance())) {
+	    if (this.estVu(i, 5.0*e.getDistance())) {
 		p = p.add(p, i.direction);
 		compteur++;
 	    }
@@ -84,36 +81,42 @@ public class Individu {
 	}
     }
 
-    public Pt Separation(Essaim e) { // ajouter champ de vision
+    public Pt Separation(Essaim e) { 
 	Pt p = new Pt(0.0, 0.0);
-	Integer nb_trop_proches = 0;
 	for (Individu i : e.getAgents()) {
-	    if (p.distance(i.position, this.position) < e.getDistance() 
-		&& !estEgal(i, this)) {
-		nb_trop_proches++;
-		p = p.add(p,p.sous(this.position, i.position));
+	    if (p.distance(i.position, this.position) < e.getDistance() && !estEgal(i, this) && this.estVu(i, 5.0*e.getDistance())){ 
+		p = p.sous(p,p.sous(i.position, this.position));
 	    }
 	}
-	if (nb_trop_proches != 0) {
-	    return p.div(p,nb_trop_proches);
-	}
-	else {
-	    return p;
-	}
+	return p;
     }
     
-    public void Evolution(Essaim e) {
+    public void Evolution(Essaim e, Integer taillex,Integer tailley) {
 	Pt p= new Pt(0.0,0.0);
 	Pt cohesion = Cohesion(e);
 	Pt alignement = Alignement(e);
-	Pt separation = Separation(e);
-	Pt direction =  p.add(p.add(cohesion, separation), alignement);
+	Pt separation = p.mult(Separation(e),1.0);
+	Pt direction = p.add(this.direction, p.add(p.add(cohesion, separation), alignement));
 	this.direction = direction;
-	System.out.println("Direction: "+ direction.getX() +  ";" 
-			   + direction.getY());
+	
+	//Limitation de la vitesse
 	if (direction.norme() > e.getV_max()) {
 	    this.direction =  p.mult(direction,e.getV_max()/direction.norme());
 	}
+
+	//Gestion des bords
+	if (this.position.getX() >taillex) {
+	    this.position.setLocation(0.0,this.position.getY());
+	}
+	if (this.position.getX() < 0) {
+	    this.position.setLocation(taillex,this.position.getY());
+	}
+	if (this.position.getY() >tailley) {
+	    this.position.setLocation(this.position.getX(),0.0);
+	}
+	if (this.position.getY() <0) {
+	    this.position.setLocation(this.position.getX(),tailley);
+	}		
 	this.position =  p.add(this.position, this.direction);
     }
 
