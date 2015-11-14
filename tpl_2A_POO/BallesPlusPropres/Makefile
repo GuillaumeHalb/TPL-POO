@@ -29,8 +29,15 @@ testGUI:
 BallsSimu:	
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBallsSimulator.java
 
+BallsSimu1:	
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBallsSimulator1.java
+
 Balls:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/Balls.java
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBalls.java
+
+testGUI1:
+	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestGUI1.java
 
 
 # Execution:
@@ -44,8 +51,14 @@ exeGUI: testGUI
 exeBallsSimu: BallsSimu
 	java -classpath bin:bin/gui.jar TestBallsSimulator
 
+exeBallsSimu1: BallsSimu1 
+	java -classpath bin:bin/gui.jar TestBallsSimulator1
+
 exeBalls: Balls
 	java -classpath bin:bin/gui.jar TestBalls
+
+exeGUI1: testGUI1
+	java -classpath bin:bin/gui.jar TestGUI1
 
 clean:
 	rm -rf bin/*.class

@@ -1,21 +1,34 @@
 import gui.Simulable;
 import gui.GUISimulator;
 import gui.Oval;
+import gui.Rectangle;
 import java.awt.Color;
 
 public class BallsSimulator implements Simulable {
 
+    private int taillex;
+    private int tailley;
     private Balls b; 
     private GUISimulator gui;
 
-    public BallsSimulator() {
-	this.gui = new GUISimulator(500, 500, Color.BLACK);
+    public BallsSimulator(int taillex, int tailley, int nb_balles) {
+	this.gui = new GUISimulator(taillex, tailley, Color.WHITE);
 	this.gui.setSimulable(this);
-	this.b = new Balls(5);
+	//int nb_balles = (int) (Math.random() * 9 + 5); //nb_aléatoire entre 5 et 10
+	this.b = new Balls(nb_balles);
+	this.taillex = taillex;
+	this.tailley = tailley;
     }
 
     public Balls getBalls() {
 	return this.b;
+    }
+    
+    public int gettaillex() {
+	return this.taillex;
+    }
+    public int gettailley() {
+	return this.tailley;
     }
 
     public GUISimulator getGUI() {
@@ -24,12 +37,19 @@ public class BallsSimulator implements Simulable {
 
     public void Affiche() {
 	this.gui.reset();
+	this.gui.addGraphicalElement(
+				     new Rectangle(0,0,
+						   Color.BLACK,
+						   Color.BLACK,
+						   2*this.taillex+10,
+						   2*this.tailley+10
+						   ));
 	for (int i = 0; i < this.getBalls().getDim(); i++) {
 	    this.gui.addGraphicalElement(
-				    new Oval((int) this.getBalls().getBalle(i).getX(),
+					 new Oval((int) this.getBalls().getBalle(i).getX(),
 						  (int) this.getBalls().getBalle(i).getY(),
-						  new Color(50 + 50*i, 50 + 50*i, 50 + 50*i),
-						  new Color(50 + 50*i, 50 + 50*i, 50 + 50*i),
+						  this.b.getColor(i),
+						  this.b.getColor(i),
 						  15
 						  )
 				    );
@@ -49,14 +69,14 @@ public class BallsSimulator implements Simulable {
 
     @Override
     public void next() {
-	this.b.translate(10,10);
+	this.b.translate(this.taillex,this.tailley);
 	System.out.println(this.toString());
 	this.Affiche();
     }
     
     @Override
     public void restart() {
-	this.b.reInit();
+	this.b.reInit(this.taillex, this.tailley);
 	System.out.println(this.toString());
 	this.Affiche();
     }

@@ -20,7 +20,7 @@ public class Balls {
 	    int v = (int) (Math.random() * 9 + 1); //nb_aléatoire entre 1 et 10
 	    this.dirh[i] = h;
 	    this.dirv[i] = v;
-	    this.coul[i] =  new Color((int) (Math.random() * 250 + 1),
+	    this.coul[i] = new Color((int) (Math.random() * 250 + 1),
 				      (int) (Math.random() * 250 + 1),
 				      (int) (Math.random() * 250 + 1));
 	} 
