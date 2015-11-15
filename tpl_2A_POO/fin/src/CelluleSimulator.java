@@ -11,6 +11,7 @@ public class CelluleSimulator implements Simulable {
     private GUISimulator gui;
     private int nb_etats;
 
+    /* Constructeur pour la simulation graphique */
     public CelluleSimulator(int taillex, int tailley, int n) {
     	this.gui = new GUISimulator(10*taillex, 10*tailley, Color.WHITE);
     	this.gui.setSimulable(this);
@@ -20,26 +21,29 @@ public class CelluleSimulator implements Simulable {
         this.nb_etats = n;
     }
 
+    /* On récupère la grillle */
     public Cellule getCells() {
 	   return this.cells;
     }
-    
+    /* On récupère la taille horizontale de la grille */
     public int gettaillex() {
 	   return this.taillex;
     }
+    /* On récupère la taille verticale de la grille */
     public int gettailley() {
 	   return this.tailley;
     }
-
+    /* On récupère le simulateur */
     public GUISimulator getGUI() {
 	   return this.gui;
     }
-
+    /* On récupère le nombre d'états */
     public int getNb_etats() {
        return this.nb_etats;
     }
     
-
+    /* fonction d'affichage pour l'interface grahique 
+    // On 'colorie' une case vivante */
     public void Affiche() {
 	
         this.gui.reset();
@@ -53,29 +57,19 @@ public class CelluleSimulator implements Simulable {
     	}
     }
 
-
-    // @Override
-    // public String toString() {
-    // 	String S = new String("[");
-    // 	for (int i = 0; i < this.b.getDim() - 1; i++) {
-    // 	    S += this.b.getBalle(i).toString() + ", ";
-    // 	}
-    // 	S += this.b.getBalle(this.b.getDim() - 1).toString() + "]";
-
-    // 	return S;
-    //} 
-
+    /* Implémentation du bouton next, on passe du temps t au temps t+1, 
+    // pûis on affiche */
     @Override
     public void next() {
 	   this.cells.evolution(this.taillex,this.tailley);
-	//System.out.println(this.toString());
 	   this.Affiche();
     }
-    
+  
+    /* Implémentation du bouton restart, on revient au temps 0 
+    // pûis on affiche */
     @Override
     public void restart() {
     	this.cells.reInit();
-    	//System.out.println(this.toString());
     	this.Affiche();
     }
 }

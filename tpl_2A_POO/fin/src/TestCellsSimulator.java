@@ -6,7 +6,7 @@ public class TestCellsSimulator {
 	//GUISimulator gui = new GUISimulator(500, 500, Color.WHITE);
 	
 	CelluleSimulator C = new CelluleSimulator(50,50,2);
-        C.getCells().reInit();
+    C.getCells().reInit();
 	C.getGUI().setSimulable(C);
     }
 }

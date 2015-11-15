@@ -11,6 +11,7 @@ public class TestEventManager {
 		}
 
 		while (!manager.isFinished()) {
+			//System.out.println(manager.isFinished());
 			manager.next();
 			Thread.sleep(1000);
 		}

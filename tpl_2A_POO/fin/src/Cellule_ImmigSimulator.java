@@ -6,16 +6,20 @@ import java.awt.Color;
 public class Cellule_ImmigSimulator extends CelluleSimulator implements Simulable {
 
     private Cellule_Immig cells_immig;
-    
+
+    /* Constructeur pour la simulation graphique */
     public Cellule_ImmigSimulator(int taillex, int tailley,int n) {
-	super(taillex,tailley,n);
-	this.cells_immig = new Cellule_Immig(taillex,tailley,n);
+		super(taillex,tailley,n);
+		this.cells_immig = new Cellule_Immig(taillex,tailley,n);
     }
 
+    /* On récupère la grillle */
     public Cellule_Immig getCells() {
-	return this.cells_immig;
+		return this.cells_immig;
     }
-    
+
+    /* fonction d'affichage pour l'interface grahique 
+    // On 'colorie' une case vivante */
     public void Affiche() {
 	
 		this.getGUI().reset();
@@ -28,14 +32,18 @@ public class Cellule_ImmigSimulator extends CelluleSimulator implements Simulabl
 	    	}
 		}
     }
-
+ 	
+ 	/* Implémentation du bouton next, on passe du temps t au temps t+1, 
+    // pûis on affiche */
     @Override
-     public void next() {
+    public void next() {
 	 	this.cells_immig.evolution();
 	 	this.Affiche();
      }
 
-        @Override
+     /* Implémentation du bouton restart, on revient au temps 0 
+    // pûis on affiche */
+    @Override
     public void restart() {
     	this.cells_immig.reInit();
     	this.Affiche();
