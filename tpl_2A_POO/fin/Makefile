@@ -32,7 +32,6 @@ CellsVieSimu:
 BoidsSimu:	
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestBoids.java
 
-
 CellsImmigSimu:	
 	javac -d bin -classpath bin/gui.jar -sourcepath src src/TestCells_ImmigSimulator.java
 
@@ -49,7 +48,6 @@ CellsSchellingSimu:
 balls: BallsSimu
 	java -classpath bin:bin/gui.jar TestBallsSimulator
 
-
 boids: BoidsSimu
 	java -classpath bin:bin/gui.jar TestBoids
 
@@ -64,4 +62,3 @@ schelling: CellsSchellingSimu
 
 clean:
 	rm -rf bin/*.class
-

@@ -1,6 +1,7 @@
 import java.util.LinkedList;
 import java.awt.Color;
 
+/* Ensemble de toutes les balles */
 public class Balls {
     private LinkedList<Balle> balles; // Liste des balles
 
@@ -20,17 +21,33 @@ public class Balls {
 	return this.balles;
     }
 
-    public void translate(int taillex, int tailley) {
+    public void translate(int taillex, int tailley, int rayon) {
 	for (Balle i : this.balles) {
-	    i.translate(taillex, tailley, this);
+	    i.translate(taillex, tailley, this, rayon);
 	}
     }
 
-    public void reInit(Integer l, Integer h, Integer nb_balles) {
+    public void reInit(int l, int h, int nb_balles, int rayon) {
 	this.balles = new LinkedList<Balle>();
-	for (Integer i = 0; i < nb_balles; i++) {
-	    Pt p = new Pt(Math.random()*l, Math.random()*h);
-	    Pt d = new Pt(Math.random()*9 + 1, Math.random()*9 + 1);
+	double x = 0.0;
+	double y = 0.0;
+	for (int i = 0; i < nb_balles; i++) {
+	    x = Math.random()*l;
+	    y = Math.random()*h;
+
+	    /* Assure que les balles soient bien dans le cadre */
+	    if (x < rayon)
+		x += rayon;
+	    else if (x > l - rayon)
+		x -= rayon;
+
+	    if (y < rayon)
+		y += rayon;
+	    else if (y > h - rayon)
+		y -= rayon;
+
+	    Pt p = new Pt(x, y);
+	    Pt d = new Pt(Math.random()*10 + 1, Math.random()*10 + 1);
 	    Color c = new Color((int) (Math.random()*250 + 1),
 				(int) (Math.random()*250 + 1),
 				(int) (Math.random()*250 + 1));

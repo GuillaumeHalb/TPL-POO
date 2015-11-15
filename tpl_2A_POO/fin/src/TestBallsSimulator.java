@@ -11,7 +11,13 @@ public class TestBallsSimulator {
 	System.out.println("Veuillez saisir un entier :");
 	String str = sc.nextLine();
 	int nb_balles = Integer.parseInt(str);
-	int hauteur =20*nb_balles;
-	BallsSimulator BS = new BallsSimulator(hauteur,hauteur,nb_balles);
+	System.out.println("Entrez également la taille de la boite:");
+	System.out.println("Largeur :");
+        str = sc.nextLine();
+	int largeur = Integer.parseInt(str);
+	System.out.println("Hauteur :");
+        str = sc.nextLine();
+	int hauteur = Integer.parseInt(str);
+	BallsSimulator BS = new BallsSimulator(largeur,hauteur,nb_balles);
     }
 }

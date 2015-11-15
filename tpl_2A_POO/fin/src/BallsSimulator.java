@@ -6,27 +6,23 @@ import java.awt.Color;
 
 public class BallsSimulator implements Simulable {
 
-    protected int taillex;
-    protected int tailley;
+    /* Dimensions du cadre */
+    private int taillex; 
+    private int tailley;
+    
     private Balls b; 
-    protected GUISimulator gui;
+    private GUISimulator gui;
+    /* Rayon d'une balle */
+    private int rayon;
 
     public BallsSimulator(int taillex, int tailley, int nb_balles) {
 	this.gui = new GUISimulator(taillex, tailley, Color.WHITE);
 	this.gui.setSimulable(this);
 	this.b = new Balls();
-	/*for (int i = 0; i < nb_balles; i++) {
-	    Pt p = new Pt(Math.random()*9 + 1, Math.random()*9 + 1);
-	    Color c = new Color((int) (Math.random()*250 + 1),
-				(int) (Math.random()*250 + 1),
-				(int) (Math.random()*250 + 1));
-	    Balle a = new Balle(new Pt(1.0, 1.0), p, c);
-	    b.ajouteBalle(a);
-	} */
-
-	b.reInit(this.taillex, this.tailley, nb_balles);
+	b.reInit(this.taillex, this.tailley, nb_balles, this.rayon);
 	this.taillex = taillex;
 	this.tailley = tailley;
+	this.rayon = 15;
     }
 
     public Balls getBalls() {
@@ -50,8 +46,8 @@ public class BallsSimulator implements Simulable {
 				     new Rectangle(0,0,
 						   Color.BLACK,
 						   Color.BLACK,
-						   2*this.taillex+10,
-						   2*this.tailley+10
+						   2*this.taillex + 10,
+						   2*this.tailley + 10
 						   ));
 	for (Balle i : b.getBalles()) {
 	    this.gui.addGraphicalElement(
@@ -59,7 +55,7 @@ public class BallsSimulator implements Simulable {
 						  (int) i.getPosition().getY(),
 						  i.getCouleur(),
 						  i.getCouleur(),
-						  15
+						  this.rayon
 						  )
 				    );
 	}
@@ -68,7 +64,6 @@ public class BallsSimulator implements Simulable {
     @Override
     public String toString() {
 	String S = new String("[");
-	Integer c = 1; // On met un compteur pour traiter la dernière balle
 	for (Balle i : b.getBalles()) {
 	    S += i.getPosition().toString() + ", ";
 	}
@@ -78,14 +73,14 @@ public class BallsSimulator implements Simulable {
 
     @Override
     public void next() {
-	this.b.translate(this.taillex,this.tailley);
+	this.b.translate(this.taillex,this.tailley, this.rayon);
 	System.out.println(this.toString());
 	this.Affiche();
     }
     
     @Override
     public void restart() {
-	this.b.reInit(this.taillex, this.tailley, this.b.getNbBalles());
+	this.b.reInit(this.taillex, this.tailley, this.b.getNbBalles(), this.rayon);
 	System.out.println(this.toString());
 	this.Affiche();
     }
