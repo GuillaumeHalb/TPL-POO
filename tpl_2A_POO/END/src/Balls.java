@@ -4,8 +4,7 @@ import gui.Oval;
 import gui.Rectangle;
 import gui.GUISimulator;
 
-/* Ensemble de toutes les balles */
-
+/** Ensemble de toutes les balles */
 public class Balls {
     private LinkedList<Balle> balles; // Liste des balles
 
@@ -13,24 +12,29 @@ public class Balls {
 	this.balles = new LinkedList<Balle>();
     }
 
+    /** Accesseur au nombre de balles */
     public Integer getNbBalles() {
 	return this.balles.size();
     }
 
+    /** Permet d'ajouter une balle à l'ensemble */
     public void ajouteBalle(Balle b) {
 	this.balles.add(b);
     }
 
+    /** Accesseur à la liste des balles */
     public LinkedList<Balle> getBalles() {
 	return this.balles;
     }
 
+    /** Déplace toutes les balles de la liste */
     public void translate(int taillex, int tailley, int rayon) {
 	for (Balle i : this.balles) {
 	    i.translate(taillex, tailley, this,rayon);
 	}
     }
 
+    /** Affiche les balles et le cadre */
     public void Affiche(int taillex, int tailley,GUISimulator gui) {
 	gui.reset();
 	gui.addGraphicalElement(
@@ -52,6 +56,7 @@ public class Balls {
 	}
     }
 
+    /** Initialise un nouveau cadre avec de nouvelles balles */
     public void reInit(int l, int h, int nb_balles, int rayon) {
 	this.balles = new LinkedList<Balle>();
 	double x = 0.0;

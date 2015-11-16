@@ -1,5 +1,6 @@
 import java.awt.Color;
 
+/** Modélise une balle qui se déplacera dans le cadre */
 public class Balle {
     protected Pt position;
     protected Pt direction;
@@ -14,6 +15,7 @@ public class Balle {
 	A = false;
     }
 
+    /** Accesseurs aux différents attributs */
     public Pt getPosition() {
 	return this.position;
     }
@@ -26,6 +28,7 @@ public class Balle {
 	return this.couleur;
     }
     
+    /** Modificateurs des différents attributs */
     public void setPosition(Pt p) {
 	this.position = p;
     }
@@ -38,13 +41,14 @@ public class Balle {
 	this.couleur = c;
     }
 
+    /** Vérifie si les deux balles sont égales */ 
     public Boolean estEgal(Balle b1) {
 	return this.position == b1.position 
 	    && this.direction == b1.direction
 	    && this.couleur == b1.couleur;
     }
 
-    /* La balle rebondit contre b1 */
+    /** La balle rebondit contre b1 */
     public void Rebond(Balle b1) {
 	double x = this.direction.getX();
 	double y = this.direction.getY();
@@ -52,7 +56,7 @@ public class Balle {
 	b1.direction = new Pt(x, y);
     }
 
-    /* Renvoit true si les deux balles sont en contact */
+    /** Renvoit true si les deux balles sont en contact */
     public Boolean enContact(Balle b1, int rayon) {
 	if  (this.position.distance(this.position, b1.position) <= 2*rayon) { 
 	    return true;
@@ -60,9 +64,8 @@ public class Balle {
 	return false;
     }
 
-    /* Fait passer la position du temps t au temps t+1 */
-   
-     public void translate(int taillex, int tailley, Balls b, int rayon) {
+    /** Fait passer la position du temps t au temps t+1 */
+    public void translate(int taillex, int tailley, Balls b, int rayon) {
 	/* Fait rebondir les balles sur les bords */
 	if (this.position.getX() - rayon <= 0 
 	    || this.position.getX() + rayon >= taillex) {

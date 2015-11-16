@@ -3,7 +3,7 @@ import java.awt.Color;
 import java.util.Scanner;
 import java.util.*;
 
-
+/** Fichier test des balles */
 public class TestBallsSimulator {
     public static void main(String[] args) {
 	System.out.println("Combien de balles souhaitez vous simuler?");

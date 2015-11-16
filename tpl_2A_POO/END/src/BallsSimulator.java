@@ -4,6 +4,7 @@ import gui.Oval;
 import gui.Rectangle;
 import java.awt.Color;
 
+/**  */
 public class BallsSimulator extends Simulator {
 
     private Balls b;
@@ -17,11 +18,12 @@ public class BallsSimulator extends Simulator {
 
     }
 
+    /** Accesseur à l'ensemble des balles */
     public Balls getBalls() {
 	return this.b;
     }
     
-    
+    /** Affiche la position de toutes les balles */
     @Override
     public String toString() {
 	String S = new String("[");
@@ -32,6 +34,7 @@ public class BallsSimulator extends Simulator {
 	return S;
     } 
 
+    /** Fais passer le simulateur du temps t au temps t+1 */
     @Override
     public void next() {
 	super.next();
@@ -41,6 +44,7 @@ public class BallsSimulator extends Simulator {
 					      this.gui));
     }
     
+    /** Affiche un nouveau cadre */
     @Override
     public void restart() {
 	this.b.reInit(this.taillex, this.tailley,

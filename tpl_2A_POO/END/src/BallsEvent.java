@@ -1,6 +1,6 @@
 import gui.GUISimulator;
 
-
+/** Evènement balle pour le gestionnaire d'évènements */
 public class BallsEvent extends Event {
     private Balls balls;
     private int taillex;
@@ -18,6 +18,7 @@ public class BallsEvent extends Event {
 	this.gui = gui;
     }
 
+    /** Accesseur pour l'ensemble des balles */
     public Balls getBalles(){
 	return this.balls;
     }
