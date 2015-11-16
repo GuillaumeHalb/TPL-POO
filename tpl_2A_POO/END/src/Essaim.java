@@ -55,14 +55,14 @@ public class Essaim {
      * si l'essaim a dans son champs de vision un autre essaim
      */
 
-    public void Affiche(int taillex, int tailley, GUISimulator gui) {
+    public void Affiche(int taillex, int tailley, GUISimulator gui,LinkedList<Individu> allAgents) {
      
-	for (Individu i : this.agents) {
-	    Color coul = Color.BLACK;
+	for (Individu i : allAgents) {
 	    Pt pos = i.getPosition();
 	    gui.addGraphicalElement(new Rectangle((int) pos.getX(),
 						  (int) pos.getY(),
-						  couleur,couleur,
+						  i.getIdentifiant(),
+						  i.getIdentifiant(),
 						  5,5));
 	    int x = (int) (5.0*i.getDirection().getX()/i.getDirection().norme());
 	    int y = (int) (5.0*i.getDirection().getY()/i.getDirection().norme());
@@ -90,6 +90,7 @@ public class Essaim {
 	    double y1 =  (Math.random()*5.0 + 1.0); 
 	    Pt Pos = new Pt(x,y);
 	    Pt dir = new Pt(bx*x1,by*y1);
+	    
 	    Individu ind = new Individu (this.couleur,Pos,dir);
 	    this.ajouteIndividu(ind);
 	}
@@ -100,7 +101,6 @@ public class Essaim {
 	for (Individu i : this.agents) {
 	    i.Evolution(this,taillex,tailley,allAgents);
 	}
-	this.Affiche(taillex, tailley, gui);
     }
 
 }

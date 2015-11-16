@@ -13,6 +13,11 @@ public class TestBoids {
 	System.out.println("Combien d'agents souhaitez vous simuler?");
 	int[] nb_agents= new int[nb_essaims];
 	for(int i = 0; i<nb_essaims;i++){
+	    if (i==0) {
+		System.out.println("L'essaim 1 représente les prédateurs");
+		System.out.println("Si vous ne souhaitez pas simuler de prédateurs,"+
+				   " entrez simplement 0 agents pour l'essaim 1");
+	    }
 	    System.out.println("Pour l'essaim "+(i+1) + " :");
 	    str = sc.nextLine();
 	    nb_agents[i] = Integer.parseInt(str);
@@ -20,7 +25,8 @@ public class TestBoids {
 	System.out.println("Entrez la taille de l'écran :");
 	str = sc.nextLine();
 	int largeur = Integer.parseInt(str);
-	EssaimSimulator E = new EssaimSimulator(largeur,largeur,60,20,nb_agents,nb_essaims);
+	EssaimSimulator E = new EssaimSimulator(largeur,largeur,60,20,
+						nb_agents,nb_essaims);
 	E.getGUI().setSimulable(E);
     }
 }

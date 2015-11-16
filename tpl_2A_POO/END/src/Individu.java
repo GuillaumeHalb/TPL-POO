@@ -6,7 +6,7 @@ public class Individu extends Balle {
  
 
     public Individu(Color coul, Pt p, Pt d) {
-	super(p,d,Color.BLUE);
+	super(p,d,coul);
 	this.identifiant = coul;
     }
     
@@ -80,8 +80,46 @@ public class Individu extends Balle {
 	Pt p = new Pt(0.0, 0.0);
 	for (Individu i :allAgents) {
 	    if (p.distance(i.position, this.position) < e.getDistance() &&
-		!estEgal(i, this) && this.estVu(i, 5.0*e.getDistance())){ 
+		!estEgal(i, this) && (this.identifiant != Color.RED) &&
+		(i.identifiant != Color.RED) &&
+		this.estVu(i, 5.0*e.getDistance())){ 
 		p = p.sous(p,p.sous(i.position, this.position));
+	    }
+	}
+	return p;
+    }
+
+    public Pt EvitementPredateur(Essaim e,LinkedList<Individu> allAgents) { 
+	Pt p = new Pt(0.0, 0.0);
+	for (Individu i :allAgents) {
+	    if (p.distance(i.position, this.position) < e.getDistance() &&
+		!estEgal(i, this) && (this.identifiant == Color.RED) &&
+		(i.identifiant == Color.RED) &&
+		this.estVu(i, 5.0*e.getDistance())){ 
+		p = p.sous(p,p.sous(i.position, this.position));
+	    }
+	}
+	return p;
+    }
+
+     public Pt Fuite(Essaim e,LinkedList<Individu> allAgents) { 
+	Pt p = new Pt(0.0, 0.0);
+	for (Individu i :allAgents) {
+	    if (p.distance(i.position, this.position) < e.getDistance() &&
+		!estEgal(i, this) && this.estVu(i, 5.0*e.getDistance()) &&
+		(i.identifiant == Color.RED) && (this.identifiant != Color.RED)){ 
+		p = p.sous(p,p.sous(i.position, this.position));
+	    }
+	}
+	return p;
+    }
+
+    public Pt Attaque(Essaim e,LinkedList<Individu> allAgents) { 
+	Pt p = new Pt(0.0, 0.0);
+	for (Individu i :allAgents) {
+	    if (!estEgal(i, this) && this.estVu(i, 5.0*e.getDistance()) &&
+		(i.identifiant != Color.RED) && (this.identifiant == Color.RED)){ 
+		p = p.sous(p,p.sous(this.position, i.position));
 	    }
 	}
 	return p;
@@ -93,10 +131,19 @@ public class Individu extends Balle {
 	Pt cohesion = Cohesion(e,allAgents);
 	Pt alignement = Alignement(e,allAgents);
 	Pt separation = p.mult(Separation(e,allAgents),1.0);
+	Pt evitementpredateur = p.mult(EvitementPredateur(e,allAgents),1.0);
+	Pt attaque = Attaque(e,allAgents);
+	Pt fuite = p.mult(Fuite(e,allAgents),5.0);
+
 	Pt direction = p.add(this.direction,
-			     p.add(p.add(cohesion,
-					 separation),
-				   alignement));
+			     p.add(p.add(cohesion, separation),
+				   p.add(fuite,
+					 p.add(evitementpredateur,
+					       p.add(attaque,alignement)
+					       )
+					 )
+				   )
+			     );
 	this.direction = direction;
 	
 	//Limitation de la vitesse

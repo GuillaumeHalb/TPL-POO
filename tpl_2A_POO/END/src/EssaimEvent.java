@@ -26,7 +26,8 @@ public class EssaimEvent extends Event {
 
     @Override
     public void execute() {
-        this.essaim.next(taillex, tailley, gui,allAgents);
-	this.essaim.Affiche(taillex,tailley,gui);
+
+	this.essaim.next(taillex, tailley, gui,allAgents);
+	this.essaim.Affiche(taillex,tailley,gui,allAgents);
     }
 }
