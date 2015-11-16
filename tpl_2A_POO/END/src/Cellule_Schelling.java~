@@ -6,7 +6,7 @@ public class Cellule_Schelling extends Cellule {
     private int seuil;
     private LinkedList<Point> maisons_vacantes;
    
-   	/** Constructeur de la grille, particularité de l'heritage :
+   	/* Constructeur de la grille, particularité de l'heritage :
     // chaque maison a une couleur définie par un entier bien précis 
     // les maisons vacantes seront reperés par 0 */
     public Cellule_Schelling (int lignes, int colonnes, int n, int k) {
@@ -16,22 +16,22 @@ public class Cellule_Schelling extends Cellule {
 		this.maisons_vacantes = new LinkedList<Point>();
     }
 
-    /** On récupère le nombre de couleurs */
+    /* On récupère le nombre de couleurs */
     public int getNb_couleurs() {
 		return this.nb_couleurs;
     }
 
-    /** On récupère le seuil */
+    /* On récupère le seuil */
 	public int getSeuil() {
 		return this.seuil;
     }
 
-    /** On récupère la liste des maisons vacantes */
+    /* On récupère la liste des maisons vacantes */
     public LinkedList<Point> getMaison_vacantes() {
     	return this.maisons_vacantes;
     }
     
-    /** Fonction calculant le nombre de voisins différents pour une maison situé en (i,j) */
+    /* Fonction calculant le nombre de voisins différents pour une maison situé en (i,j) */
     public int nb_voisins_differents(int i, int j, int taillex, int tailley) {
 		int nb_voisins = 0;
 		int etat = getEtatav(i,j);
@@ -65,7 +65,7 @@ public class Cellule_Schelling extends Cellule {
 		return nb_voisins;
     }
     
-    /** Algorithme principal de schelling */
+    /* Algorithme principal de schelling */
     public void evolution() {
 	
 		for (int i = 0; i < getLignes(); i++) {
@@ -93,7 +93,7 @@ public class Cellule_Schelling extends Cellule {
 		}
     }
     
-    /** Initialisation des grilles */
+    /* Initialisation des grilles */
     @Override
     public void reInit() {
 		this.maisons_vacantes = new LinkedList<Point>();

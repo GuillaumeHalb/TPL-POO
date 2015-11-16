@@ -11,7 +11,7 @@ public class CelluleSimulator implements Simulable {
     private GUISimulator gui;
     private int nb_etats;
 
-    /** Constructeur pour la simulation graphique */
+    /* Constructeur pour la simulation graphique */
     public CelluleSimulator(int taillex, int tailley, int n) {
     	this.gui = new GUISimulator(10*taillex, 10*tailley, Color.WHITE);
     	this.gui.setSimulable(this);
@@ -21,28 +21,28 @@ public class CelluleSimulator implements Simulable {
         this.nb_etats = n;
     }
 
-    /** On récupère la grillle */
+    /* On récupère la grillle */
     public Cellule getCells() {
 	   return this.cells;
     }
-    /** On récupère la taille horizontale de la grille */
+    /* On récupère la taille horizontale de la grille */
     public int gettaillex() {
 	   return this.taillex;
     }
-    /** On récupère la taille verticale de la grille */
+    /* On récupère la taille verticale de la grille */
     public int gettailley() {
 	   return this.tailley;
     }
-    /** On récupère le simulateur */
+    /* On récupère le simulateur */
     public GUISimulator getGUI() {
 	   return this.gui;
     }
-    /** On récupère le nombre d'états */
+    /* On récupère le nombre d'états */
     public int getNb_etats() {
        return this.nb_etats;
     }
     
-    /** fonction d'affichage pour l'interface grahique 
+    /* fonction d'affichage pour l'interface grahique 
     // On 'colorie' une case vivante */
     public void Affiche() {
 	
@@ -57,7 +57,7 @@ public class CelluleSimulator implements Simulable {
     	}
     }
 
-    /** Implémentation du bouton next, on passe du temps t au temps t+1, 
+    /* Implémentation du bouton next, on passe du temps t au temps t+1, 
     // pûis on affiche */
     @Override
     public void next() {
@@ -65,7 +65,7 @@ public class CelluleSimulator implements Simulable {
 	   this.Affiche();
     }
   
-    /** Implémentation du bouton restart, on revient au temps 0 
+    /* Implémentation du bouton restart, on revient au temps 0 
     // pûis on affiche */
     @Override
     public void restart() {

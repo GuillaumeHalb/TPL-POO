@@ -5,7 +5,7 @@ public class Cellule {
     private int[][] etatav; //grille au temps t
     private int[][] etatap; //grille au temps t+1
 
-    /** Constructeur : création d'un tableau où chaque case est une cellule */
+    /* Constructeur : création d'un tableau où chaque case est une cellule */
     public Cellule (int lignes, int colonnes) {
 		this.cellules = new Point[colonnes][lignes];
 		this.etatav = new int[colonnes][lignes];
@@ -20,36 +20,36 @@ public class Cellule {
 		}
     }
 	
-	/** Obtenir le nombre de lignes */
+	/* Obtenir le nombre de lignes */
     public int getLignes() {
 		return this.cellules.length;
     }
-    /** Obtenir le nombre de colonnes */
+    /* Obtenir le nombre de colonnes */
     public int getColonnes() {
 		return this.cellules[0].length;
     }
-    /** Obtenir la case (i,j) de la grille */
+    /* Obtenir la case (i,j) de la grille */
     public Point getCellule(int i,int j) {
 		return this.cellules[i][j];
     }
-    /** Obtenir l'état de la case (i,j) de la grille au temps t */
+    /* Obtenir l'état de la case (i,j) de la grille au temps t */
     public int getEtatav(int i,int j) {
 		return this.etatav[i][j];
     }
-    /** Obtenir l'état de la case (i,j) de la grille au temps t+1 */
+    /* Obtenir l'état de la case (i,j) de la grille au temps t+1 */
     public int getEtatap(int i,int j) {
 		return this.etatap[i][j];
     }
-    /** Modifier l'état de la case (i,j) dans la grille au temps t */
+    /* Modifier l'état de la case (i,j) dans la grille au temps t */
     public void setEtatap(int i,int j, int etat) {
 		this.etatap[i][j] = etat;
     }
-    /** Modifier l'état de la case (i,j) dans la grille au temps t+1 */
+    /* Modifier l'état de la case (i,j) dans la grille au temps t+1 */
     public void setEtatav(int i,int j, int etat) {
 	 	this.etatav[i][j] = etat;
     }
 
-    /** Obtenir le nombre de voisins vivants de la case (i,j) au temps t
+    /* Obtenir le nombre de voisins vivants de la case (i,j) au temps t
     // Le principe est de regarder les 8 voisins les plus proches
     // et de savoir s'ils sont ou non à un état différent (ou supérieur) */
     public int nb_voisins_vivants(int i, int j, int taillex, int tailley, int n) {
@@ -84,7 +84,7 @@ public class Cellule {
 		return nb_voisins;
 	}
     
-    /** Algorithme du jeu de la vie */
+    /* Algorithme du jeu de la vie */
     public void evolution(int taillex, int tailley) {
 	
 		for (int i = 0; i < taillex; i++) {
@@ -110,7 +110,7 @@ public class Cellule {
 		}
     }
     
-    /** Initialisation de la grille t=0 */
+    /* Initialisation de la grille t=0 */
     public void reInit() {
 		for (int i = 0; i < this.cellules.length; i++) {
 		    for (int j = 0; j < this.cellules[0].length; j++) {
