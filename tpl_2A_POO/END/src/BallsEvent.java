@@ -7,7 +7,10 @@ public class BallsEvent extends Event {
     private int tailley;
     private GUISimulator gui;
     
-    public BallsEvent (long date, Balls balls,int taillex, int tailley,GUISimulator gui){
+    public BallsEvent (long date,
+		       Balls balls,
+		       int taillex, int tailley,
+		       GUISimulator gui){
 	super(date);
 	this.balls = balls;
 	this.taillex = taillex;

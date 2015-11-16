@@ -60,8 +60,15 @@ public class Essaim {
 	for (Individu i : this.agents) {
 	    Color coul = Color.BLACK;
 	    Pt pos = i.getPosition();
-	    gui.addGraphicalElement(new Rectangle((int) pos.getX(),(int) pos.getY(),couleur,couleur,5,5));
-	    gui.addGraphicalElement(new Rectangle((int) (pos.getX()+5.0*i.getDirection().getX()/i.getDirection().norme()),(int) (pos.getY() + 5.0*i.getDirection().getY()/i.getDirection().norme()),Color.BLACK,Color.BLACK,2,2));
+	    gui.addGraphicalElement(new Rectangle((int) pos.getX(),
+						  (int) pos.getY(),
+						  couleur,couleur,
+						  5,5));
+	    int x = (int) (5.0*i.getDirection().getX()/i.getDirection().norme());
+	    int y = (int) (5.0*i.getDirection().getY()/i.getDirection().norme());
+	    gui.addGraphicalElement(new Rectangle((int) (pos.getX() + x),
+						  (int) (pos.getY() + y),
+						  Color.BLACK,Color.BLACK,2,2));
 	}
     }
     
@@ -88,15 +95,12 @@ public class Essaim {
 	}
     }
 
-    public void next(int taillex, int tailley, GUISimulator gui,LinkedList<Individu> allAgents){
+    public void next(int taillex, int tailley, GUISimulator gui,
+		     LinkedList<Individu> allAgents){
 	for (Individu i : this.agents) {
 	    i.Evolution(this,taillex,tailley,allAgents);
 	}
 	this.Affiche(taillex, tailley, gui);
     }
-    
-    /* On peut faire une fonction avancer 
-     * Pour que l'essaim avance 
-     * (On fait avancer son centre de masse)
-     */
+
 }

@@ -35,12 +35,16 @@ public class BallsSimulator extends Simulator {
     @Override
     public void next() {
 	super.next();
-	this.eventMan.addEvent(new BallsEvent(this.eventMan.getcurrentDate()+1,this.b,taillex,tailley,this.gui));
+	this.eventMan.addEvent(new BallsEvent(this.eventMan.getcurrentDate()+1,
+					      this.b,
+					      taillex,tailley,
+					      this.gui));
     }
     
     @Override
     public void restart() {
-	this.b.reInit(this.taillex, this.tailley, this.b.getNbBalles(),this.rayon);
+	this.b.reInit(this.taillex, this.tailley,
+		      this.b.getNbBalles(),this.rayon);
 	System.out.println(this.toString());
 	this.b.Affiche(taillex,tailley,this.gui);
     }

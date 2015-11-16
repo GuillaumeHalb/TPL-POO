@@ -41,7 +41,8 @@ public class Simulator implements Simulable {
     
     @Override
     public void restart() {
-	gui.addGraphicalElement(new Rectangle(0,0,Color.RED,Color.WHITE,2*taillex+10,2*tailley+10));
+	gui.addGraphicalElement(new Rectangle(0,0,Color.RED,Color.WHITE,
+					      2*taillex+10,2*tailley+10));
     }
 
 }

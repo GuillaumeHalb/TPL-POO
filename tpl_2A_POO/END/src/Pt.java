@@ -40,7 +40,7 @@ public class Pt extends Double {
     }
 
     public double distance(Pt a, Pt b) {
-    	 return Math.sqrt( (a.y - b.y)*(a.y - b.y) + (a.x - b.x)*(a.x - b.x) );
+	return Math.sqrt( (a.y - b.y)*(a.y - b.y) + (a.x - b.x)*(a.x - b.x) );
 	
     }
 

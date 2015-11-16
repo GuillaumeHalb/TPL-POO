@@ -9,7 +9,9 @@ public class EssaimEvent extends Event {
     private int tailley;
     private GUISimulator gui;
     
-    public EssaimEvent (long date, Essaim essaim,int taillex, int tailley,GUISimulator gui,LinkedList<Individu> allAgents){
+    public EssaimEvent (long date, Essaim essaim,int taillex, int tailley,
+			GUISimulator gui,
+			LinkedList<Individu> allAgents){
 	super(date);
 	this.essaim = essaim;
 	this.taillex = taillex;

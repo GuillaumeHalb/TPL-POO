@@ -34,38 +34,25 @@ public class Balls {
     public void Affiche(int taillex, int tailley,GUISimulator gui) {
 	gui.reset();
 	gui.addGraphicalElement(
-				     new Rectangle(0,0,
-						   Color.BLACK,
-						   Color.BLACK,
-						   2*taillex+10,
-						   2*tailley+10
-						   ));
+				new Rectangle(0,0,
+					      Color.BLACK,
+					      Color.BLACK,
+					      2*taillex+10,
+					      2*tailley+10
+					      ));
 	for (Balle i : this.balles) {
 	    gui.addGraphicalElement(
-					 new Oval((int) i.getPosition().getX(),
-						  (int) i.getPosition().getY(),
-						  i.getCouleur(),
-						  i.getCouleur(),
-						  15
-						  )
+				    new Oval((int) i.getPosition().getX(),
+					     (int) i.getPosition().getY(),
+					     i.getCouleur(),
+					     i.getCouleur(),
+					     15
+					     )
 				    );
 	}
     }
 
-    // public void reInit(Integer l, Integer h, Integer nb_balles) {
-    // 	this.balles = new LinkedList<Balle>();
-    // 	for (Integer i = 0; i < nb_balles; i++) {
-    // 	    Pt p = new Pt(Math.random()*l, Math.random()*h);
-    // 	    Pt d = new Pt(Math.random()*9 + 1, Math.random()*9 + 1);
-    // 	    Color c = new Color((int) (Math.random()*250 + 1),
-    // 				(int) (Math.random()*250 + 1),
-    // 				(int) (Math.random()*250 + 1));
-    // 	    Balle a = new Balle(p, d, c);
-    // 	    this.ajouteBalle(a);
-    // 	}
-    // }
-
-     public void reInit(int l, int h, int nb_balles, int rayon) {
+    public void reInit(int l, int h, int nb_balles, int rayon) {
 	this.balles = new LinkedList<Balle>();
 	double x = 0.0;
 	double y = 0.0;

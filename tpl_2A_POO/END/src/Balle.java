@@ -61,23 +61,7 @@ public class Balle {
     }
 
     /* Fait passer la position du temps t au temps t+1 */
-    // public void translate(int taillex, int tailley, Balls b) { 
-    // 	if (this.position.getX() - 7 <= 0 || this.position.getX() + 7 >= taillex) { 
-    // 	    this.direction = new Pt(-this.direction.getX(), 
-    // 				    this.direction.getY());
-    // 	}
-    // 	if (this.position.getY() - 7 <= 0 || this.position.getY() + 7 >= tailley ) { // pareil
-    // 	    this.direction = new Pt(this.direction.getX(), 
-    // 				    -this.direction.getY());
-    // 	}
-
-    // 	for (Balle i : b.getBalles()) {
-    // 	    if (this.enContact(i)) {
-    // 		this.Rebond(i);
-    // 	    }
-    // 	}
-    // 	this.position.translate(this.direction.getX(), this.direction.getY());
-    // }
+   
      public void translate(int taillex, int tailley, Balls b, int rayon) {
 	/* Fait rebondir les balles sur les bords */
 	if (this.position.getX() - rayon <= 0 
@@ -100,10 +84,5 @@ public class Balle {
 	this.position.translate(this.direction.getX(), this.direction.getY());
     }
     
-    /*@Override
-    public String toString() {
-	return "La balle de couleur " + this.couleur 
-	    + " a pour position : " + this.position.toString() 
-	    + " et pour direction : " + this.direction.toString();
-	    }*/
+
 }

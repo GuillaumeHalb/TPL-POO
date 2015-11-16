@@ -18,24 +18,27 @@ public class Cellule_ImmigSimulator extends CelluleSimulator {
     
     public void Affiche() {
 	
-		this.getGUI().reset();
+	this.getGUI().reset();
 	
-		for (int i = 0; i < this.cells_immig.getLignes(); i++) {
-	    	for (int j = 0; j < this.cells_immig.getColonnes(); j++) {
-				int etatk = this.cells_immig.getEtatav(i,j);
-				Color coul = new Color (250*etatk/this.cells_immig.getNb_etats(),250*etatk/this.cells_immig.getNb_etats(),250*etatk/this.cells_immig.getNb_etats());
-				this.getGUI().addGraphicalElement(new Rectangle(10*i,10*j,coul,coul,10,10));
-	    	}
-		}
+	for (int i = 0; i < this.cells_immig.getLignes(); i++) {
+	    for (int j = 0; j < this.cells_immig.getColonnes(); j++) {
+		int etatk = this.cells_immig.getEtatav(i,j);
+		int composante = 250*etatk/this.cells_immig.getNb_etats();
+		Color coul = new Color (composante,composante,composante);
+		this.getGUI().addGraphicalElement(new Rectangle(10*i,10*j,
+								coul,coul,
+								10,10));
+	    }
+	}
     }
 
     @Override
-     public void next() {
-	 	this.cells_immig.evolution();
-	 	this.Affiche();
-     }
+    public void next() {
+	this.cells_immig.evolution();
+	this.Affiche();
+    }
 
-        @Override
+    @Override
     public void restart() {
     	this.cells_immig.reInit();
     	this.Affiche();

@@ -21,61 +21,50 @@ public class CelluleSimulator implements Simulable {
     }
 
     public Cellule getCells() {
-	   return this.cells;
+	return this.cells;
     }
     
     public int gettaillex() {
-	   return this.taillex;
+	return this.taillex;
     }
     public int gettailley() {
-	   return this.tailley;
+	return this.tailley;
     }
 
     public GUISimulator getGUI() {
-	   return this.gui;
+	return this.gui;
     }
 
     public int getNb_etats() {
-       return this.nb_etats;
+	return this.nb_etats;
     }
     
 
     public void Affiche() {
-	
-        this.gui.reset();
+	this.gui.reset();
     	for (int i = 0; i < this.taillex; i++) {
     	    for (int j = 0; j < this.tailley; j++) {
-    		  if (this.cells.getEtatav(i,j) == 1) {
-    		      this.gui.addGraphicalElement(
-    						 new Rectangle(10*i,10*j,Color.BLUE,Color.BLUE,10,10));
-    		  }
+		if (this.cells.getEtatav(i,j) == 1) {
+		    this.gui.addGraphicalElement(
+						 new Rectangle(10*i,10*j,
+							       Color.BLUE,
+							       Color.BLUE,
+							       10,10));
+		}
     	    }
     	}
     }
 
 
-    // @Override
-    // public String toString() {
-    // 	String S = new String("[");
-    // 	for (int i = 0; i < this.b.getDim() - 1; i++) {
-    // 	    S += this.b.getBalle(i).toString() + ", ";
-    // 	}
-    // 	S += this.b.getBalle(this.b.getDim() - 1).toString() + "]";
-
-    // 	return S;
-    //} 
-
     @Override
     public void next() {
-	   this.cells.evolution(this.taillex,this.tailley);
-	//System.out.println(this.toString());
-	   this.Affiche();
+	this.cells.evolution(this.taillex,this.tailley);
+	this.Affiche();
     }
     
     @Override
     public void restart() {
     	this.cells.reInit();
-    	//System.out.println(this.toString());
     	this.Affiche();
     }
 }
