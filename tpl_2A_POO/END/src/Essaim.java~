@@ -1,0 +1,75 @@
+import java.util.LinkedList;
+import java.awt.Point;
+
+public class Essaim {
+    private double distance; // distance minimal entre deux individus
+    private LinkedList<Individu> agents; /* Liste des agents de l'essaim */
+    private Integer v_max; // pour éviter la téléportation
+ 
+    public Essaim(double d,Integer v_max) {
+	this.distance = d;
+	this.v_max = v_max;
+	this.agents = new LinkedList<Individu>();
+        
+    }
+
+    public Pt CalculCentre() {
+	Pt p = new Pt(0.0,0.0);
+	for (Individu i : agents) {
+	    p= p.add(p, i.getPosition());
+	}
+	return p.div(p, this.agents.size());
+    }
+    
+    public Integer getNbAgents() {
+	return agents.size();
+    }
+
+    public Integer getV_max() {
+	return this.v_max;
+    }
+
+    public void ajouteIndividu(Individu i) {
+	agents.add(i);
+    }
+
+    public LinkedList<Individu> getAgents() {
+	return this.agents;
+    }
+
+
+    public double getDistance() {
+	return this.distance;
+    }
+
+    /* On peut faire une fonction changement de direction 
+     * si l'essaim a dans son champs de vision un autre essaim
+     */
+
+    public void reInit(int taillex,int tailley, int nb_boids) {
+	this.distance = 14;
+	this.v_max = 15;
+	this.agents = new LinkedList<Individu>();
+	for(int i=1;i<nb_boids;i++){
+	    double x =  (Math.random() * taillex + 1.0);
+	    double y =  (Math.random() * tailley + 1.0);
+	    double bx = 1.0;
+	    double by = 1.0;
+	    if (Math.random() < 0.5)
+		bx = -1.0;
+	    if (Math.random() < 0.5)
+		by = -1.0;
+	    double x1 =  (Math.random()*5.0 + 1.0);
+	    double y1 =  (Math.random()*5.0 + 1.0); 
+	    Pt Pos = new Pt(x,y);
+	    Pt dir = new Pt(bx*x1,by*y1);
+	    Individu ind = new Individu (1,Pos,dir);
+	    this.ajouteIndividu(ind);
+	}
+    }
+    
+    /* On peut faire une fonction avancer 
+     * Pour que l'essaim avance 
+     * (On fait avancer son centre de masse)
+     */
+}
