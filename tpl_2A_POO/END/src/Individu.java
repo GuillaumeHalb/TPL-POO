@@ -1,6 +1,12 @@
 import java.awt.Color;
 import java.util.LinkedList;
 
+
+/**
+   La classe qui représente un agent parmi un essaim donné avec ses règles 
+   (cohésion, alignement, séparation, attaque, fuite, limitation de vitesse)
+   et son evolution dans le simulateur.
+ */
 public class Individu extends Balle {
     private Color identifiant; // A quel essaim appartient l'individu
  

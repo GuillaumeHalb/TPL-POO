@@ -5,9 +5,11 @@ import gui.Rectangle;
 import java.awt.Color;
 
 
-
+/**
+   La classe essaim (boid) qui caractérise un essaim à simuler
+ */
 public class Essaim {
-    private double distance; // distance minimal entre deux individus
+    private double distance; // distance minimale entre deux individus
     private LinkedList<Individu> agents; /* Liste des agents de l'essaim */
     private Integer v_max; // pour éviter la téléportation
     private Color couleur;
@@ -51,10 +53,7 @@ public class Essaim {
 	return this.distance;
     }
 
-    /* On peut faire une fonction changement de direction 
-     * si l'essaim a dans son champs de vision un autre essaim
-     */
-
+ 
     public void Affiche(int taillex, int tailley, GUISimulator gui,LinkedList<Individu> allAgents) {
      
 	for (Individu i : allAgents) {

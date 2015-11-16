@@ -4,7 +4,10 @@ import gui.Rectangle;
 import java.awt.Color;
 import java.util.LinkedList;
 
-
+/** La classe de simulateur d'essaim (boid) qui hérite du simulateur
+    et qui contient le nombre d'essaims, d'agents par essaim, et la liste
+    de tous les agents à simuler
+ */
 public class EssaimSimulator extends Simulator {
 
     private int nb_essaims;
@@ -12,6 +15,7 @@ public class EssaimSimulator extends Simulator {
     private int[] nb_agents;
     private LinkedList<Individu> allAgents;
 
+    /**Constructeur du simulateur d'essaim*/
     public EssaimSimulator(int taillex, int tailley,double d, Integer v_max,
 			   int[] nb_agents, int nb_essaims) {
 	super(taillex,tailley);
@@ -34,12 +38,13 @@ public class EssaimSimulator extends Simulator {
 	this.allAgents = new LinkedList<Individu>();
 
     }
-
+    
+    /**Accesseur essaim*/
     public Essaim getEssaim(int i) {
 	return this.essaim[i];
     }
 
-    //Attaque des predateurs sur les autres
+    /**Attaque des predateurs sur les autres, suppression des agents mangés */
     public void SupprimeAgents(){
 	Pt p = new Pt(0.0,0.0);
 	int indice_fin = 1;

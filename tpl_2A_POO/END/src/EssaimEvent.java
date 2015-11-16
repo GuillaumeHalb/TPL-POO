@@ -1,7 +1,8 @@
 import gui.GUISimulator;
 import java.util.LinkedList;
 
-
+/** La classe évènement des boids pour le gestionnaire d'évènements
+ */
 public class EssaimEvent extends Event {
     private Essaim essaim;
     private LinkedList<Individu> allAgents;
@@ -26,7 +27,6 @@ public class EssaimEvent extends Event {
 
     @Override
     public void execute() {
-
 	this.essaim.next(taillex, tailley, gui,allAgents);
 	this.essaim.Affiche(taillex,tailley,gui,allAgents);
     }

@@ -23,50 +23,50 @@ public class CelluleSimulator implements Simulable {
 
     /** On récupère la grillle */
     public Cellule getCells() {
-	   return this.cells;
+	return this.cells;
     }
     /** On récupère la taille horizontale de la grille */
     public int gettaillex() {
-	   return this.taillex;
+	return this.taillex;
     }
     /** On récupère la taille verticale de la grille */
     public int gettailley() {
-	   return this.tailley;
+	return this.tailley;
     }
     /** On récupère le simulateur */
     public GUISimulator getGUI() {
-	   return this.gui;
+	return this.gui;
     }
     /** On récupère le nombre d'états */
     public int getNb_etats() {
-       return this.nb_etats;
+	return this.nb_etats;
     }
     
     /** fonction d'affichage pour l'interface grahique 
-    // On 'colorie' une case vivante */
+     // On 'colorie' une case vivante */
     public void Affiche() {
 	
         this.gui.reset();
     	for (int i = 0; i < this.taillex; i++) {
     	    for (int j = 0; j < this.tailley; j++) {
-    		  if (this.cells.getEtatav(i,j) == 1) {
-    		      this.gui.addGraphicalElement(
+		if (this.cells.getEtatav(i,j) == 1) {
+		    this.gui.addGraphicalElement(
     						 new Rectangle(10*i,10*j,Color.BLUE,Color.BLUE,10,10));
-    		  }
+		}
     	    }
     	}
     }
 
     /** Implémentation du bouton next, on passe du temps t au temps t+1, 
-    // pûis on affiche */
+     // pûis on affiche */
     @Override
     public void next() {
-	   this.cells.evolution(this.taillex,this.tailley);
-	   this.Affiche();
+	this.cells.evolution(this.taillex,this.tailley);
+	this.Affiche();
     }
   
     /** Implémentation du bouton restart, on revient au temps 0 
-    // pûis on affiche */
+     // pûis on affiche */
     @Override
     public void restart() {
     	this.cells.reInit();

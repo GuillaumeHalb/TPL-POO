@@ -4,6 +4,8 @@ import gui.Oval;
 import gui.Rectangle;
 import java.awt.Color;
 
+/** La classe de simulateur qui conserve le gestionnaire d'évènement,
+ le GUI Simulator et la taille de la fenêtre de simulation */
 public class Simulator implements Simulable {
 
     protected int taillex;
